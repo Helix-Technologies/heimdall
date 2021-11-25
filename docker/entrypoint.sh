@@ -6,8 +6,9 @@ fi;
 
 # start processes
 heimdalld --home=$HEIMDALL_DIR start &
+pid = $!
 heimdalld --home=$HEIMDALL_DIR rest-server &
 sleep 100
-bridge --home=$HEIMDALL_DIR start --all
+bridge --home=$HEIMDALL_DIR start --all &
 
-exit $?
+wait $pid
